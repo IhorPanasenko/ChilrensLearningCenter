@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChildrensLearningCenterWeb.Models
+namespace Core.Models
 {
     public partial class Room
     {
