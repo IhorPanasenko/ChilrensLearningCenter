@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class ChildrenRepository : IChildrenRepository
+    public class ChildrenRepository : IChildrenRepository
     {
         private readonly ChildrensLearningCenterContext _dbContext;
 
