@@ -14,7 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IChildrenRepository, ChildrenRepository>();
+builder.Services.AddScoped<IClassRepository, ClassRepository>();
+
 builder.Services.AddScoped<IChildrenService, ChildrenService>();
+builder.Services.AddScoped<IClassService, ClassService>();
 
 builder.Services.AddDbContext<ChildrensLearningCenterContext>();
 
