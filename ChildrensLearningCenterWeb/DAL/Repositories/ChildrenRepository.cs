@@ -47,6 +47,12 @@ namespace DAL.Repositories
             return _dbContext.Childrens.Include(ch=>ch.Client).ToList();
         }
 
+        public void StroedProcedureCreate(string clientFN, string clientSn, string clientPhone, string clientEmail, DateOnly clientBIrthdayDate, string childFN, string childSN, DateOnly childBirtdayDate)
+        {
+            _dbContext.Childrens.FromSqlRaw($"CreateNewClientWithChild {clientFN}, {clientSn}, {clientPhone}, {clientEmail}, {clientBIrthdayDate}, {childFN}, {childSN}, {childBirtdayDate}").ToList();
+            _dbContext.SaveChanges();
+        }
+
         public void Update(int id, Children children)
         {
             var child = _dbContext.Childrens.Find(id);
