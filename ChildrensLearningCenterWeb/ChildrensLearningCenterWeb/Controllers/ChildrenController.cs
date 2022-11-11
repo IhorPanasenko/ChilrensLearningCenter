@@ -1,8 +1,10 @@
 ﻿using BLL.Interfaces;
 using ChildrensLearningCenterWeb.ViewModels;
 using Core.Models;
+using DAL;
 using DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ChildrensLearningCenterWeb.Controllers
@@ -14,10 +16,13 @@ namespace ChildrensLearningCenterWeb.Controllers
         private readonly IChildrenService childrenService;
 
         private readonly ILogger<ChildrenController> logger;
-        public ChildrenController(IChildrenService childrenService, ILogger<ChildrenController> logger)
+        private readonly ChildrensLearningCenterContext _dbContext;
+
+        public ChildrenController(IChildrenService childrenService, ILogger<ChildrenController> logger, ChildrensLearningCenterContext dbContext)
         {
             this.childrenService = childrenService;
             this.logger = logger;
+            _dbContext = dbContext;
         }
 
         [HttpGet("{id=int}")]
@@ -67,6 +72,15 @@ namespace ChildrensLearningCenterWeb.Controllers
             }
 
             return null;
+        }
+
+        [HttpPost]
+        [Route("StoredProcedure")]
+        
+        public void StroedProcedureCreate(ChildParentViewModel view)
+        {
+            _dbContext.Childrens.FromSqlRaw($"CreateNewClientWithChild {view.ClientFirstName}, {view.ClientSecondName}, {view.ClientTelephone}, {view.ClientEmail}, {view.ClientBirthdayDate}, {view.ChildFirstName}, {view.ChildSecondName}, {view.ChildBirthdayDate}").ToList();
+            _dbContext.SaveChanges();
         }
 
     }
