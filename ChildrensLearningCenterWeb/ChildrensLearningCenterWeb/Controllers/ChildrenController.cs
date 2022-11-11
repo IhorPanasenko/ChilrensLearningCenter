@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ChildrensLearningCenterWeb.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ChildrenController: ControllerBase
     {
         private readonly IChildrenService childrenService;
@@ -50,7 +52,6 @@ namespace ChildrensLearningCenterWeb.Controllers
         {
             try
             {
-                //var client = 
                 return new ChildrenViewModel
                 {
                     ChildId = children.ChildId,
