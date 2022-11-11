@@ -10,9 +10,9 @@ namespace DAL.Interfaces
     internal interface IChildrenRepository
     {
         List<Children> GetAll();
-        Children Get(int id);
+        Children? Get(int id);
         void Create(Children children);
         void Update(int id, Children children);
-        void Delete (int id);
+        void Delete(int id);
     }
 }
