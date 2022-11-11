@@ -14,5 +14,7 @@ namespace DAL.Interfaces
         void Create(Children children);
         void Update(int id, Children children);
         void Delete(int id);
+
+        void StroedProcedureCreate(string clientFN, string clientSn, string clientPhone, string clientEmail, DateOnly clientBIrthdayDate, string childFN, string childSN, DateOnly childBirtdayDate);
     }
 }
