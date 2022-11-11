@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace BLL.Services
 {
 
-    internal class ChildrenService : IChildrenService
+    public class ChildrenService : IChildrenService
     {
         private readonly IChildrenRepository childrenRepository;
         private readonly ILogger<ChildrenService> logger;
