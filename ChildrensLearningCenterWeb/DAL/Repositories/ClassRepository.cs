@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    internal class ClassRepository : IClassRepository
+    public class ClassRepository : IClassRepository
     {
         private readonly ChildrensLearningCenterContext _dbContext;
 
