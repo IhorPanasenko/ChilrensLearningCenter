@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    internal interface IChildrenRepository
+    public interface IChildrenRepository
     {
         List<Children> GetAll();
         Children? Get(int id);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Interfaces
 {
-    internal interface IChildrenService
+    public interface IChildrenService
     {
         List<Children> GetAll();
         Children? Get(int id);
