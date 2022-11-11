@@ -16,10 +16,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IChildrenRepository, ChildrenRepository>();
 builder.Services.AddScoped<IClassRepository, ClassRepository>();
 builder.Services.AddScoped<ISpecialistsRepository, SpecialistRepository>();
+builder.Services.AddScoped<IDirectionRepository, DirectionRepository>();
 
 builder.Services.AddScoped<IChildrenService, ChildrenService>();
 builder.Services.AddScoped<IClassService, ClassService>();
 builder.Services.AddScoped<ISpecialistService, SpecialistService>();
+builder.Services.AddScoped<IDirectionService, DirectionService>();
 
 builder.Services.AddDbContext<ChildrensLearningCenterContext>();
 
