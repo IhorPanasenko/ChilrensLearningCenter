@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BLL.Interfaces;
+using DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,18 +10,28 @@ namespace ChildrensLearningCenterWeb.Controllers
     [ApiController]
     public class DirectionsController : ControllerBase
     {
-        private readonly ChildrensLearningCenterContext _dbContext;
+        private readonly IDirectionService directionService;
+        private readonly ILogger<DirectionsController> logger;
 
-        public DirectionsController(ChildrensLearningCenterContext dbContext)
+        public DirectionsController(ILogger<DirectionsController> logger, IDirectionService directionService)
         {
-            _dbContext = dbContext;
+            this.logger = logger;
+            this.directionService = directionService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var directions = _dbContext.Directions.ToList();
-            return Ok(directions);
+            try
+            {
+                var directions = directionService.GetAll();
+                return Ok(directions);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest();
+            }
         }
 
         [HttpGet]
@@ -29,12 +40,12 @@ namespace ChildrensLearningCenterWeb.Controllers
         {
             try
             {
-                var res = _dbContext.Database.ExecuteSqlRaw($"Add_Description {price}");
-                _dbContext.SaveChanges();
-                return Ok(res);
+                directionService.StoredPeocedure(price);
+                return Ok();
             }
             catch (Exception e)
             {
+                logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
         }
