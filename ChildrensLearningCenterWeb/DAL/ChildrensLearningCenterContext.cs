@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ChildrensLearningCenterWeb.ViewModels;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -25,17 +26,20 @@ namespace DAL
         public virtual DbSet<Room> Rooms { get; set; } = null!;
         public virtual DbSet<Specialist> Specialists { get; set; } = null!;
 
+        public virtual DbSet<StoredFunctionTableModel> StoredFunctionTableModels { get; set; } = null!;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=IGORPC;Database=ChildrensLearningCenter;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=IGORPC;Database=ChildrensLearningCenter;Trusted_Connection=True;Encrypt=False;", b=>b.MigrationsAssembly("ChildrensLearningCenterWeb"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        { 
+
             modelBuilder.Entity<Children>(entity =>
             {
                 entity.HasKey(e => e.ChildId)
@@ -154,7 +158,16 @@ namespace DAL
                     .HasConstraintName("FK__Specialis__RoomI__2E1BDC42");
             });
 
+            
+            modelBuilder.Entity<StoredFunctionTableModel>(entity =>
+            {
+                entity.HasNoKey();
+                entity.Property(e => e.SpecialistID);
+                entity.Property(e => e.DirectionID);
+            });
+    
             OnModelCreatingPartial(modelBuilder);
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
