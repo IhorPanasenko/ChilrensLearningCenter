@@ -1,4 +1,5 @@
 ﻿using BLL.Interfaces;
+using ChildrensLearningCenterWeb.ViewModels;
 using Core.Models;
 using DAL.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -28,7 +29,7 @@ namespace BLL.Services
             List<Specialist> specialists = new List<Specialist>();
             try
             {
-                specialists =  specialistsRepository.GetAll();
+                specialists = specialistsRepository.GetAll();
             }
             catch (Exception e)
             {
@@ -36,6 +37,35 @@ namespace BLL.Services
             }
 
             return specialists;
+        }
+
+        public string ScalarFunction()
+        {
+            try
+            {
+                return specialistsRepository.ScalarFunction();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return "";
+            }
+        }
+
+        public List<StoredFunctionTableModel> TableFunction()
+        {
+            List<StoredFunctionTableModel> tableFunctions = new List<StoredFunctionTableModel>();
+
+            try
+            {
+                tableFunctions = specialistsRepository.TableFunction();
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+            }
+
+            return tableFunctions;
         }
     }
 }
