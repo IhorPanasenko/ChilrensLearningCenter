@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using ChildrensLearningCenterWeb.ViewModels;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace DAL.Interfaces
     public interface ISpecialistsRepository
     {
         List<Specialist> GetAll();
+
+        string ScalarFunction();
+
+        List<StoredFunctionTableModel> TableFunction();
     }
 }
