@@ -36,6 +36,57 @@ namespace ChildrensLearningCenterWeb.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("TableFunction")]
+        public IActionResult TableFunction()
+        {
+            try
+            {
+                var objs = specialistService.TableFunction();
+                var viewObjs = objs.Select(o => getViewModel(o)).ToList();
+                return Ok(viewObjs);
+
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
+
+
+        [HttpGet]
+        [Route("ScalarFunction")]
+        public IActionResult ScalarFunction()
+        {
+            try
+            {
+                return Ok(specialistService.ScalarFunction());
+            }
+            catch(Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
+        private StoredFunctionTableViewModel? getViewModel(StoredFunctionTableModel tableModel)
+        {
+            try
+            {
+                return new StoredFunctionTableViewModel
+                {
+                    SpecialistID = tableModel.SpecialistID,
+                    DirectionID = tableModel.DirectionID
+                };
+
+            }catch (Exception e)
+            {
+                logger.LogError(e.Message);
+            }
+
+            return null;
+        }
+
         private SpecialistViewModel getViewModel(Specialist specialist)
         {
             try
