@@ -67,5 +67,21 @@ namespace BLL.Services
 
             return tableFunctions;
         }
+
+        public List<Specialist> TwoTables()
+        {
+            List<Specialist> twoTables = new List<Specialist>();
+
+            try
+            {
+                twoTables = specialistsRepository.TwoTables();
+            }
+            catch(Exception e)
+            {
+                logger.LogError(e.Message);
+            }
+
+            return twoTables;
+        }
     }
 }
