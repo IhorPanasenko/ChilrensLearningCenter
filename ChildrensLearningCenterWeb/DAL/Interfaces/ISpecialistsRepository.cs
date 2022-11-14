@@ -15,5 +15,7 @@ namespace DAL.Interfaces
         string ScalarFunction();
 
         List<StoredFunctionTableModel> TableFunction();
+
+        List<Specialist> TwoTables();
     }
 }

@@ -24,10 +24,15 @@ namespace DAL.Repositories
             return _dbContext.Specialists.ToList();
         }
 
-        public string ScalarFunction()
+        public string ScalarFunction( )
         {
-            var res = _dbContext.Database.SqlQuery<string>($"SELECT [dbo].[ManyOldestSpecialistsDirection] ()").ToList()[0];
+            var res = _dbContext.Database.SqlQuery<string>($"SELECT [dbo].[ManyOldestSpecialistsDirection] (})").ToList()[0];
             return res;
+        }
+
+        public List<Specialist> TwoTables()
+        {
+            return _dbContext.Specialists.Include(s => s.Direction).ToList();
         }
 
         List<StoredFunctionTableModel> ISpecialistsRepository.TableFunction()
