@@ -11,7 +11,7 @@ namespace ChildrensLearningCenterWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ChildrenController: ControllerBase
+    public class ChildrenController : ControllerBase
     {
         private readonly IChildrenService childrenService;
 
@@ -32,7 +32,7 @@ namespace ChildrensLearningCenterWeb.Controllers
             {
                 Children? children = childrenService.Get(id); ;
 
-                if(children == null)
+                if (children == null)
                 {
                     return NotFound($"No child with id {id}");
                 }
@@ -53,7 +53,23 @@ namespace ChildrensLearningCenterWeb.Controllers
             }
         }
 
-        private ChildrenViewModel? getChildrenViewModel (Children children)
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var childrens = childrenService.GetAll();
+                var childrenViews = childrens.Select(ch => getChildrenViewModel(ch)).ToList();
+                return Ok(childrenViews);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e.Message);
+                return BadRequest();
+            }
+        }
+
+        private ChildrenViewModel? getChildrenViewModel(Children children)
         {
             try
             {
@@ -76,7 +92,7 @@ namespace ChildrensLearningCenterWeb.Controllers
 
         [HttpPost]
         [Route("StoredProcedure")]
-        
+
         public void StroedProcedureCreate(ChildParentViewModel view)
         {
             _dbContext.Childrens.FromSqlRaw($"CreateNewClientWithChild {view.ClientFirstName}, {view.ClientSecondName}, {view.ClientTelephone}, {view.ClientEmail}, {view.ClientBirthdayDate}, {view.ChildFirstName}, {view.ChildSecondName}, {view.ChildBirthdayDate}").ToList();

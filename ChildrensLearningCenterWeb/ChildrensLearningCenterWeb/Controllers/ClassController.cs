@@ -28,7 +28,6 @@ namespace ChildrensLearningCenterWeb.Controllers
                 var classes = classService.GetAll();
                 var classViews = classes.Select(c => getViewModel(c)).ToList();
                 return Ok(classViews);
-
             }
             catch (Exception e)
             {
