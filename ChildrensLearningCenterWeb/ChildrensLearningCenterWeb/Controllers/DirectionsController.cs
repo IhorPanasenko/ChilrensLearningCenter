@@ -1,4 +1,6 @@
 ﻿using BLL.Interfaces;
+using ChildrensLearningCenterWeb.ViewModels;
+using Core.Models;
 using DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +27,8 @@ namespace ChildrensLearningCenterWeb.Controllers
             try
             {
                 var directions = directionService.GetAll();
-                return Ok(directions);
+                var directionViews = directions.Select(d => getViewModel(d)).ToList();
+                return Ok(directionViews);
             }
             catch (Exception e)
             {
@@ -48,6 +51,19 @@ namespace ChildrensLearningCenterWeb.Controllers
                 logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
+        }
+
+        private DirectionViewModel getViewModel(Direction direction)
+        {
+            return new DirectionViewModel
+            {
+                DirectionId = direction.DirectionId,
+                Title = direction.Title,
+                Purpose = direction.Purpose,
+                Price = direction.Price,
+                Description = direction.Description
+            };
+
         }
     }
 }
