@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChildrensLearningCenterWeb", "ChildrensLearningCenterWeb\ChildrensLearningCenterWeb.csproj", "{7022462C-F98A-44FD-A762-2292621F96A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{5F239F4E-FD05-49C7-97B1-2C760A64FC3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{5F239F4E-FD05-49C7-97B1-2C760A64FC3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{ED35F969-1806-4EB7-9262-D0D82B635B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{ED35F969-1806-4EB7-9262-D0D82B635B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{E470C4D4-AE1B-42DC-8CC4-E3918AE385B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{E470C4D4-AE1B-42DC-8CC4-E3918AE385B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
