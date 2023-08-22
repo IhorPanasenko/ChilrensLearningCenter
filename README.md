@@ -1,1 +1,2 @@
 # ChilrensLearningCenter
+University educational project, for the center of children's development. As a result, a web application should be obtained for the convenient organization of the work of a children's educational center, where specialists conduct individual classes with children in separate offices. The following programming languages ​​and technologies were used during the implementation of the project: C#, EntityFramework, React.js. MS Sql Server 2019 is used as a DBMS
